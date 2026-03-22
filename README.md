@@ -69,7 +69,30 @@ Instead of observing the full solution, only the **average vertical deformation 
 - The Bayesian approach offers a more robust framework for uncertainty quantification, especially in low-data settings  
 
 ---
+## Execution and Dependencies
 
+This project is designed to run in **Google Colab**, where the required environment and dependencies are handled automatically.
+
+A key dependency is the `dlroms` library, a Python package for **deep learning-based reduced order models (DL-ROMs)**.  
+DL-ROMs are surrogate models that approximate expensive numerical solvers using neural networks trained on simulation data, enabling fast evaluation and efficient parameter estimation.
+
+In this project, `dlroms` is used to:
+- construct the surrogate model for the parametric solution map  
+- train the neural network  
+- replace the full-order model during inference 
+The library is installed automatically in the first cell of the notebook:
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+try:
+    from dlroms import *
+except:
+    !pip install --no-deps git+https://github.com/NicolaRFranco/dlroms.git
+    from dlroms import *
+
+```
 ## Repository Structure
 
 ```text
